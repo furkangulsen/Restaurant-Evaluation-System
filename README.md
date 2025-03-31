@@ -45,7 +45,7 @@ When compiling the project after cloning it to your computer, your IDE may recre
 ## License
 Open source (add license information)
 
-## Demo
+## Live Preview
 Below is the demonstration video of the project:
 
 [![Project Demo](https://img.youtube.com/vi/vdBjLsf7te4/0.jpg)](https://www.youtube.com/watch?v=vdBjLsf7te4)
