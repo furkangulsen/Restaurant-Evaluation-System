@@ -1,0 +1,10 @@
+Lux 1,Pendik,5.0
+Restoran 2,Sahil,4.0
+Lux 10,Cumhuriyet,5.0
+Restoran 3,Park,4.8
+Restoran 1,Merkez,4.5
+Market 2,İstanbul,5.0
+Market 3,İzmir,5.0
+Zincir Restoran 1,İzmir,5.0
+Market 1,Ankara,5.0
+Zincir Restoran 2,Afyon,5.0

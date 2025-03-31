@@ -1,0 +1,14 @@
+Market 3,harika!,5,2025-03-04T21:06:17.3208515
+Market 2,çok iyi!,5,2025-03-04T21:06:28.1928049
+Restoran 1,harika,5,2025-03-04T21:06:46.5376664
+Restoran 1,çok iyi,5,2025-03-04T21:06:50.9925227
+Market 4,cok iyi,5,2025-03-04T21:19:15.0045406
+Market 5,cok iyi !,5,2025-03-04T22:50:11.6342055
+Restoran 2,başarılı,5,2025-03-04T23:16:39.4292803
+Restoran 3,güzel mekan gidilir,5,2025-03-04T23:16:47.9055955
+Restoran 3,Nice,5,2025-03-04T23:36:44.9955163
+Lux 10,guzel,5,2025-03-04T23:54:19.9404277
+Lux 1,pendik restoran guzel,5,2025-03-05T00:14:46.9858978
+Lux 1,pendik restoran guzel yorum deneme,5,2025-03-05T00:15:08.7198144
+Market 2,cok guzel,5,2025-03-06T23:58:16.3575918
+Market 3,yorum1,5,2025-03-06T23:58:26.0235196

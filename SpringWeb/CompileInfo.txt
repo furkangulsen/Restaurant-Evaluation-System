@@ -1,0 +1,31 @@
+Restoran Değerlendirme Sistemi - Web Uygulaması
+
+Kullanılan Teknolojiler:
+- Java 17
+- Spring Boot 2.7.x
+- Spring MVC
+- Spring Data JPA
+- Thymeleaf
+- PostgreSQL
+- Bootstrap 5
+- REST API
+- Gradle
+
+Derleme Adımları:
+1. JDK 17 veya üzeri gereklidir
+2. PostgreSQL veritabanı kurulumu ve "restaurant_db" adında veritabanı oluşturulması
+3. Terminal/Command Prompt'ta proje klasörüne gidilir
+4. Windows için `gradlew clean build`, Linux/MacOS için `./gradlew clean build` komutu çalıştırılır
+5. Windows için `gradlew runWeb`, Linux/MacOS için `./gradlew runWeb` komutu ile web uygulaması başlatılır
+6. Web tarayıcısında http://localhost:8080 adresine gidilerek uygulama erişilir
+
+Uygulama Özellikleri:
+- Restoran ekleme, düzenleme, silme ve listeleme
+- Restoran değerlendirmesi ekleme, düzenleme, silme ve listeleme
+- Responsive tasarım ile mobil uyumluluk
+- REST API ile diğer uygulamalarla entegrasyon imkanı
+- Veritabanı yedekleme ve geri yükleme işlemleri
+- Örnek veri seti yükleme özelliği
+- Thymeleaf ile dinamik sayfa oluşturma
+- İstatistik görüntüleme ve raporlama
+- Generic servis yapısı ile kodun yeniden kullanılabilirliği 

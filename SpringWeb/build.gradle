@@ -1,0 +1,133 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'eclipse'
+	id 'application'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+// Spring Boot ana sınıfı
+springBoot {
+	mainClass = 'com.example.demo.DemoApplication'
+}
+
+// Uygulama başlatıcısı için ana sınıf
+application {
+	mainClass = 'com.example.demo.gui.BasitGui'
+}
+
+// JAR dosyalarını yapılandır
+bootJar {
+	enabled = true
+	archiveClassifier = ''
+}
+
+jar {
+	enabled = true
+	archiveClassifier = 'plain'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Boot bağımlılıkları
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	// Spring Shell - CLI uygulamaları için (web profilinde kullanılmaz)
+	implementation 'org.springframework.shell:spring-shell-starter:3.2.2'
+	
+	// Jakarta validasyon API'si
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+	
+	// Veritabanı bağımlılıkları
+	implementation 'org.postgresql:postgresql'
+	implementation 'com.h2database:h2'
+	
+	// Development tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// Test bağımlılıkları
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// Test görevi
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// Dosya kodlaması
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+// GUI çalıştırma görevi
+task runGUI(type: JavaExec, group: 'application') {
+	description = 'Başlatıcı GUI uygulamasını çalıştırır'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.example.demo.gui.BasitGui'
+	standardInput = System.in
+	jvmArgs = ['-Dfile.encoding=UTF-8', '-Dswing.aatext=true', '-Dawt.useSystemAAFontSettings=on']
+}
+
+// Web modunda çalıştır
+task runWeb(type: JavaExec, group: 'application') {
+	description = 'Web modunda uygulamayı çalıştırır'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.example.demo.DemoApplication'
+	standardInput = System.in
+	args = ['--server.port=8080']
+}
+
+// CLI modunda çalıştır
+task runCLI(type: JavaExec, group: 'application') {
+	description = 'CLI modunda uygulamayı çalıştırır'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.example.demo.DemoApplication'
+	standardInput = System.in
+	args = ['--spring.profiles.active=cli']
+	jvmArgs = [
+		'-Dfile.encoding=UTF-8',
+		'-Dsun.jnu.encoding=UTF-8',
+		'-Dstdout.encoding=UTF-8',
+		'-Dstdin.encoding=UTF-8',
+		'-Dspring.output.ansi.enabled=ALWAYS'
+	]
+}
+
+// bootRun görevi yapılandırması
+bootRun {
+	mainClass = 'com.example.demo.DemoApplication'
+	systemProperty 'spring.profiles.active', System.getProperty('spring.profiles.active', 'default')
+	systemProperty 'server.port', System.getProperty('server.port', '8080')
+	systemProperty 'file.encoding', System.getProperty('file.encoding', 'UTF-8')
+	systemProperty 'spring.main.allow-circular-references', 'true'
+	systemProperty 'spring.main.allow-bean-definition-overriding', 'true'
+	systemProperty 'spring.shell.interactive.enabled', 'true'
+	systemProperty 'spring.shell.noninteractive.enabled', 'false'
+	systemProperty 'spring.shell.command.script.enabled', 'true'
+	// Konsol girdileri için yapılandırmalar
+	standardInput = System.in
+}
+
+// Varsayılan run görevi 
+run {
+	dependsOn 'runGUI'
+}

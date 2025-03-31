@@ -1,0 +1,134 @@
+RESTORAN VE DEĞERLENDİRME SİSTEMİ RAPORU
+==========================================
+
+1. GENEL YAPI
+-------------
+- Java Swing kullanılarak modern bir masaüstü uygulaması geliştirildi
+- FlatDarkLaf teması ile koyu renk modern arayüz tasarlandı
+- MVC (Model-View-Controller) mimarisi benzeri yapı kullanıldı
+
+2. ANA SINIFLAR
+--------------
+Main.java:
+- Ana pencere ve kullanıcı arayüzü
+- Restoran listesi görüntüleme
+- Popup menü ile işlem yapma
+- Butonlar ve olayları yönetme
+
+RestaurantManager.java:
+- Restoran verilerini yönetme
+- Dosyadan okuma/yazma işlemleri
+- Liste modelini güncelleme
+- CRUD operasyonları
+
+ReviewManager.java:
+- Değerlendirme verilerini yönetme
+- Dosyadan okuma/yazma işlemleri
+- Restoran-değerlendirme ilişkisi
+
+Restaurant.java:
+- Restoran veri modeli
+- Ad, konum ve puan bilgileri
+- toString ve fromString metodları
+
+Review.java:
+- Değerlendirme veri modeli
+- Yorum ve puan bilgileri
+- Restoran ilişkisi
+
+3. ARAYÜZ BİLEŞENLERİ
+--------------------
+RestaurantAddGUI.java:
+- Yeni restoran ekleme penceresi
+- Form validasyonu
+- Veri girişi kontrolleri
+
+RestaurantEditGUI.java:
+- Restoran düzenleme penceresi
+- Mevcut bilgileri gösterme
+- Güncelleme işlemleri
+
+ReviewAddGUI.java:
+- Değerlendirme ekleme penceresi
+- Yorum ve puan girişi
+- Form kontrolleri
+
+ReviewsGUI.java:
+- Değerlendirmeleri listeleme penceresi
+- Değerlendirme silme
+- Filtreleme ve sıralama
+
+4. ÖZELLİKLER
+------------
+Restoranlar için:
+- Ekleme
+- Silme (ilişkili değerlendirmelerle birlikte)
+- Düzenleme
+- Listeleme
+- Sağ tık menüsü ile hızlı işlemler
+
+Değerlendirmeler için:
+- Ekleme
+- Silme
+- Listeleme
+- Restoran bazlı filtreleme
+
+5. VERİ YAPISI
+-------------
+restaurants.txt:
+- Restoran bilgilerini saklar
+- CSV benzeri format
+- Ad,Konum,Puan şeklinde kayıt
+
+reviews.txt:
+- Değerlendirme bilgilerini saklar
+- CSV benzeri format
+- RestoranAdı,Yorum,Puan şeklinde kayıt
+
+6. KULLANICI DENEYİMİ
+--------------------
+- Koyu tema ile göz yormayan arayüz
+- Emoji kullanımı ile zenginleştirilmiş görünüm
+- Sürükle-bırak destekli listeler
+- Hata ve bilgi mesajları
+- Onay dialogları
+- Form validasyonları
+
+7. GÜVENLİK VE KONTROLLER
+------------------------
+- Veri girişi doğrulama
+- Dosya işlemlerinde hata kontrolü
+- Silme işlemlerinde onay alma
+- Null kontrolleri
+- Try-catch blokları
+
+8. PERFORMANS İYİLEŞTİRMELERİ
+---------------------------
+- Verimli veri yapıları kullanımı
+- Gereksiz nesne oluşturmadan kaçınma
+- Dosya işlemlerinde buffer kullanımı
+- Liste modelinin optimize güncellenmesi
+
+9. HATA DÜZELTMELERİ
+-------------------
+- Restoran silme işleminde değerlendirmelerin silinmemesi sorunu
+- Düzenleme penceresinde restoran bulunamama hatası
+- Liste güncellemelerinde yaşanan sorunlar
+- Emoji ve özel karakter sorunları
+
+10. SON DURUM
+------------
+- Tam işlevsel bir restoran değerlendirme sistemi
+- Kullanıcı dostu arayüz
+- Stabil ve hatasız çalışma
+- Kolay bakım yapılabilir kod yapısı
+- Genişletilebilir mimari
+
+11. GELECEK GELİŞTİRMELER
+------------------------
+- Resim ekleme özelliği
+- Kullanıcı hesapları
+- Kategoriler
+- Arama ve filtreleme
+- Harita entegrasyonu
+- Yedekleme sistemi 

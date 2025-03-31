@@ -1,0 +1,124 @@
+========== RESTORAN DEĞERLENDİRME SİSTEMİ - VERİTABANI İŞLEMLERİ ==========
+
+1. KAYNAK KODLAR
+----------------
+Veritabanı işlemlerinin gerçekleştirildiği kaynak kodları aşağıdaki dizinlerde bulunmaktadır:
+
+Model (Entity) Sınıfları:
+- src/main/java/com/example/demo/model/Restaurant.java (Restoran Entity sınıfı)
+- src/main/java/com/example/demo/model/Review.java (Değerlendirme Entity sınıfı)
+
+Repository (Veritabanı Erişim) Sınıfları:
+- src/main/java/com/example/demo/repository/RestaurantRepository.java (Restoran veritabanı işlemleri)
+- src/main/java/com/example/demo/repository/ReviewRepository.java (Değerlendirme veritabanı işlemleri)
+
+Servis (İş Mantığı) Sınıfları:
+- src/main/java/com/example/demo/service/GenericService.java (Generic servis arayüzü)
+- src/main/java/com/example/demo/service/RestaurantService.java (Restoran servis sınıfı)
+- src/main/java/com/example/demo/service/ReviewService.java (Değerlendirme servis sınıfı)
+- src/main/java/com/example/demo/service/StatisticsService.java (İstatistik servis sınıfı)
+
+Veritabanı Yapılandırma ve SQL Dosyaları:
+- src/main/resources/application.properties (Veritabanı bağlantı ayarları)
+- src/main/resources/schema.sql (Veritabanı şema tanımları)
+- src/main/resources/data.sql (Başlangıç verileri)
+- src/main/resources/sample_data.sql (Örnek veri seti)
+- src/main/resources/app.sql (Ödev teslimi için SQL dosyası)
+
+2. DERLEME TALİMATLARI
+----------------------
+Uygulamayı derlemek için:
+
+Windows:
+```
+gradlew clean build
+```
+
+Linux/MacOS:
+```
+./gradlew clean build
+```
+
+3. VERİTABANI AYARLARI
+----------------------
+Veritabanı ayarları application.properties dosyasında bulunmaktadır:
+
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/restaurant_db
+spring.datasource.username=postgres
+spring.datasource.password=123456789
+spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
+Bu ayarları kendi PostgreSQL kurulumunuza göre değiştirmeniz gerekebilir.
+
+4. VERİTABANI ŞEMASI
+--------------------
+Veritabanı iki temel tablodan oluşmaktadır:
+
+1. restaurants (Restoranlar)
+   - id (PRIMARY KEY)
+   - name (Restoran adı)
+   - location (Konum)
+   - rating (Puanı)
+
+2. reviews (Değerlendirmeler)
+   - id (PRIMARY KEY)
+   - restaurant_id (FOREIGN KEY -> restaurants.id)
+   - restaurant_name (Restoran adı)
+   - comment (Yorum)
+   - rating (Puan)
+   - date (Değerlendirme tarihi)
+   - updated_at (Güncelleme tarihi)
+
+5. ÖRNEK VERİ YÜKLEME
+---------------------
+Örnek verileri yüklemek için:
+
+a) app.sql dosyasını doğrudan PostgreSQL veritabanına aktarabilirsiniz:
+```
+psql -U postgres -d restaurant_db -f app.sql
+```
+
+b) Alternatif olarak, web arayüzündeki "Örnek Veri Seti Yükle" özelliğini kullanabilirsiniz:
+   - Web uygulamasını başlatın (gradlew runWeb)
+   - http://localhost:8080/backup adresine gidin
+   - "Örnek Veri Seti Yükle" butonuna tıklayın
+
+6. JPA VE HIBERNATE KULLANIMI
+------------------------------
+JPA (Java Persistence API) ve Hibernate, entity sınıfları ve veritabanı tabloları arasında ORM (Object-Relational Mapping) sağlar:
+
+- @Entity: Model sınıflarını veritabanı tablolarına eşler
+- @Table: Tablo adını ve şemasını tanımlar
+- @Column: Kolon adlarını ve özelliklerini tanımlar
+- @Id ve @GeneratedValue: Birincil anahtarları ve otomatik değer atama stratejilerini tanımlar
+- @OneToMany ve @ManyToOne: İlişkileri tanımlar
+
+7. GENERIC TİP KULLANIMI
+------------------------
+GenericService<T, ID> arayüzü, tüm servisler için ortak CRUD metotlarını tanımlar:
+- T findById(ID id)
+- List<T> findAll()
+- T save(T entity)
+- void delete(T entity)
+- void deleteById(ID id)
+
+Bu generic arayüz, RestaurantService ve ReviewService tarafından implement edilir:
+- RestaurantService implements GenericService<Restaurant, Long>
+- ReviewService implements GenericService<Review, Long>
+
+8. COLLECTION KULLANIMI
+-----------------------
+Java Collection Framework'ü yoğun olarak kullanılmaktadır:
+- List<Restaurant>: Restoranları listeler
+- List<Review>: Değerlendirmeleri listeler
+- Map<String, Object>: İstatistik sonuçlarını döndürür
+- Optional<T>: Null kontrolü için wrapper sınıfı
+
+9. GEREKSİNİMLER
+----------------
+- Java 17 veya üzeri
+- Gradle 7.6 veya üzeri
+- PostgreSQL 12 veya üzeri
+- restaurant_db adında bir veritabanı 

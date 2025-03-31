@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout/main :: html(content = ~{::content}, title = 'Değerlendirme Detayları')">
+<body>
+    <div th:fragment="content">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Değerlendirme Detayları</h3>
+                <span class="badge bg-light text-dark rounded-pill" th:text="${review.formattedDate}">01.01.2024 12:00</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5>Restoran</h5>
+                    <p>
+                        <a th:href="@{/restaurants/{id}(id=${review.restaurant != null ? review.restaurant.id : ''})}" 
+                           th:text="${review.restaurantName}" class="text-decoration-none">
+                            Restoran Adı
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>Puan</h5>
+                    <div class="rating-stars">
+                        <span th:each="i : ${#numbers.sequence(1, 5)}">
+                            <i th:class="${i <= review.rating ? 'fas fa-star' : 'far fa-star'}"></i>
+                        </span>
+                        <span class="ms-2" th:text="${review.rating + '/5'}">4/5</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>Yorum</h5>
+                    <p th:text="${review.comment}">Yorum içeriği burada görünecek.</p>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="/reviews" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Değerlendirmeler Listesine Dön
+                    </a>
+                    <div>
+                        <a th:href="@{/reviews/{id}/edit(id=${review.id})}" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-edit me-1"></i>Düzenle
+                        </a>
+                        <a th:href="@{/reviews/{id}/delete(id=${review.id})}" 
+                           class="btn btn-outline-danger"
+                           onclick="return confirm('Bu değerlendirmeyi silmek istediğinizden emin misiniz?')">
+                            <i class="fas fa-trash me-1"></i>Sil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

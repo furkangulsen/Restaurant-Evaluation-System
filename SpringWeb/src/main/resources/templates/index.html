@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout/main :: html(content = ~{::content}, title = 'Ana Sayfa')">
+<body>
+    <div th:fragment="content">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Restoran Değerlendirme Sistemi</h1>
+            <p class="lead">En iyi restoranları keşfedin ve kendi değerlendirmelerinizi paylaşın.</p>
+            <hr class="my-4">
+            <p>Sistemimizde en iyi restoranları bulabilir, değerlendirmeleri okuyabilir ve kendi deneyimlerinizi paylaşabilirsiniz.</p>
+            <div class="d-flex gap-2">
+                <a class="btn btn-primary btn-lg" href="/restaurants" role="button">
+                    <i class="fas fa-utensils me-2"></i>Restoranları Görüntüle
+                </a>
+                <a class="btn btn-success btn-lg" href="/reviews" role="button">
+                    <i class="fas fa-star me-2"></i>Değerlendirmeleri Görüntüle
+                </a>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-search fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Keşfet</h5>
+                        <p class="card-text">Şehrinizdeki en iyi restoranları keşfedin ve yeni lezzetler bulun.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-star fa-3x mb-3 text-warning"></i>
+                        <h5 class="card-title">Değerlendir</h5>
+                        <p class="card-text">Ziyaret ettiğiniz restoranları değerlendirin ve deneyimlerinizi paylaşın.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-share-alt fa-3x mb-3 text-success"></i>
+                        <h5 class="card-title">Paylaş</h5>
+                        <p class="card-text">Favori restoranlarınızı arkadaşlarınızla paylaşın ve tavsiyeler alın.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

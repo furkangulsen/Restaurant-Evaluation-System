@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout/main :: html(content = ~{::content}, title = 'Restoranlar')">
+<body>
+    <div th:fragment="content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Restoranlar</h2>
+            <a href="/restaurants/new" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Yeni Restoran Ekle
+            </a>
+        </div>
+        
+        <!-- Filtreleme Seçenekleri -->
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Filtrele</h5>
+            </div>
+            <div class="card-body">
+                <form action="/restaurants" method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="location" class="form-label">Konum</label>
+                        <input type="text" class="form-control" id="location" name="location" 
+                               th:value="${param.location}" placeholder="Konum ara...">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="minRating" class="form-label">Minimum Puan</label>
+                        <select class="form-select" id="minRating" name="minRating">
+                            <option value="">Tümü</option>
+                            <option value="1" th:selected="${param.minRating == '1'}">1 Yıldız ve Üzeri</option>
+                            <option value="2" th:selected="${param.minRating == '2'}">2 Yıldız ve Üzeri</option>
+                            <option value="3" th:selected="${param.minRating == '3'}">3 Yıldız ve Üzeri</option>
+                            <option value="4" th:selected="${param.minRating == '4'}">4 Yıldız ve Üzeri</option>
+                            <option value="4.5" th:selected="${param.minRating == '4.5'}">4.5 Yıldız ve Üzeri</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary me-2">
+                            <i class="fas fa-filter me-2"></i>Filtrele
+                        </button>
+                        <a href="/restaurants" class="btn btn-outline-secondary">
+                            <i class="fas fa-undo me-2"></i>Sıfırla
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Restoranlar Listesi -->
+        <div class="row" th:if="${not #lists.isEmpty(restaurants)}">
+            <div class="col-md-4 mb-4" th:each="restaurant : ${restaurants}">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" th:text="${restaurant.name}">Restoran Adı</h5>
+                        <span class="badge bg-primary rounded-pill" th:text="${restaurant.location}">Konum</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="rating-stars">
+                                <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                    <i th:class="${i <= restaurant.rating ? 'fas fa-star' : (i <= restaurant.rating + 0.5 ? 'fas fa-star-half-alt' : 'far fa-star')}"></i>
+                                </span>
+                                <span class="ms-2" th:text="${#numbers.formatDecimal(restaurant.rating, 1, 1)}">4.5</span>
+                            </div>
+                        </div>
+                        <p class="card-text" th:text="${'Değerlendirme Sayısı: ' + (restaurant.reviews != null ? restaurant.reviews.size() : 0)}">
+                            Değerlendirme Sayısı: 10
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white d-flex justify-content-between">
+                        <a th:href="@{/restaurants/{id}(id=${restaurant.id})}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-info-circle me-1"></i>Detaylar
+                        </a>
+                        <div>
+                            <a th:href="@{/restaurants/{id}/edit(id=${restaurant.id})}" class="btn btn-sm btn-outline-secondary me-1">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a th:href="@{/restaurants/{id}/delete(id=${restaurant.id})}" 
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="return confirm('Bu restoranı silmek istediğinizden emin misiniz?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Restoran Bulunamadı -->
+        <div class="alert alert-info" th:if="${#lists.isEmpty(restaurants)}">
+            <i class="fas fa-info-circle me-2"></i>Hiç restoran bulunamadı. Yeni bir restoran eklemek için "Yeni Restoran Ekle" butonuna tıklayın.
+        </div>
+    </div>
+</body>
+</html> 

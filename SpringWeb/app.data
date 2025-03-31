@@ -1,0 +1,32 @@
+# RESTORAN DEĞERLENDIRME SİSTEMİ ÖRNEK VERİ DOSYASI
+# FORMAT: [TİP]|[VERİ1]|[VERİ2]|...
+# RESTORAN: id|ad|konum|puan
+# DEĞERLENDİRME: id|restoran_id|restoran_adı|puan|yorum|tarih
+
+# RESTORANLAR
+RESTORAN|1|Kebapçı Mehmet|İstanbul/Beyoğlu|4.7
+RESTORAN|2|Balıkçı Ahmet|İstanbul/Kadıköy|4.3
+RESTORAN|3|İtalyan Mutfağı|İzmir/Konak|4.5
+RESTORAN|4|Çin Lokantası|Ankara/Çankaya|3.8
+RESTORAN|5|Ev Yemekleri|Bursa/Nilüfer|4.9
+RESTORAN|6|Fast Food Corner|İstanbul/Şişli|3.5
+RESTORAN|7|Kahvaltı Dünyası|Antalya/Muratpaşa|4.8
+RESTORAN|8|Tatlıcı Hasan|İstanbul/Beşiktaş|4.6
+RESTORAN|9|Akdeniz Mutfağı|İzmir/Karşıyaka|4.2
+RESTORAN|10|Anadolu Lezzetleri|Eskişehir/Tepebaşı|4.4
+
+# DEĞERLENDİRMELER
+DEĞERLENDİRME|1|1|Kebapçı Mehmet|5|Adana kebap çok lezzetli, kesinlikle tavsiye ederim!|2023-06-15 14:30:00
+DEĞERLENDİRME|2|1|Kebapçı Mehmet|4|Et kalitesi ve pişirme çok iyi, ancak servis biraz yavaş.|2023-07-20 19:15:00
+DEĞERLENDİRME|3|2|Balıkçı Ahmet|5|Taze balık, harika manzara! Levrek çok lezzetliydi.|2023-05-25 13:20:00
+DEĞERLENDİRME|4|2|Balıkçı Ahmet|3|Balıklar taze ama fiyatlar biraz yüksek.|2023-06-30 21:10:00
+DEĞERLENDİRME|5|3|İtalyan Mutfağı|4|Pizza hamuru çok lezzetli, içindekiler taze.|2023-06-10 19:45:00
+DEĞERLENDİRME|6|3|İtalyan Mutfağı|5|Makarnalar tam kıvamında, soslar ev yapımı gibi.|2023-07-05 20:15:00
+DEĞERLENDİRME|7|4|Çin Lokantası|4|Pekin ördeği çok lezzetli, porsiyonlar doyurucu.|2023-05-15 18:30:00
+DEĞERLENDİRME|8|5|Ev Yemekleri|5|Gerçekten ev yemeği tadında, kuru fasulye harika!|2023-04-25 13:45:00
+DEĞERLENDİRME|9|5|Ev Yemekleri|5|Sarma ve dolmalar el yapımı, çok lezzetli.|2023-05-30 14:30:00
+DEĞERLENDİRME|10|6|Fast Food Corner|3|Hamburger ortalama ama patates kızartması iyi.|2023-07-01 15:30:00
+DEĞERLENDİRME|11|7|Kahvaltı Dünyası|5|Serpme kahvaltı çok zengin ve lezzetli!|2023-04-10 10:15:00
+DEĞERLENDİRME|12|8|Tatlıcı Hasan|5|Baklava çok taze ve lezzetli, şerbeti tam kıvamında.|2023-07-15 16:30:00
+DEĞERLENDİRME|13|9|Akdeniz Mutfağı|4|Humus ve tabule çok lezzetli, tavsiye ederim.|2023-06-30 19:30:00
+DEĞERLENDİRME|14|10|Anadolu Lezzetleri|5|Kuzu tandır muhteşemdi, et ağızda dağılıyor.|2023-05-15 14:00:00 

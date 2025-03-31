@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout/main :: html(content = ~{::content}, title = ${restaurant.name} + ' - Detaylar')">
+<body>
+    <div th:fragment="content">
+        <!-- Restoran Detayları -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0" th:text="${restaurant.name}">Restoran Adı</h3>
+                <span class="badge bg-light text-dark rounded-pill" th:text="${restaurant.location}">Konum</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Değerlendirme</h5>
+                        <div class="rating-stars mb-3">
+                            <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                <i th:class="${i <= restaurant.rating ? 'fas fa-star' : (i <= restaurant.rating + 0.5 ? 'fas fa-star-half-alt' : 'far fa-star')}"></i>
+                            </span>
+                            <span class="ms-2 fw-bold" th:text="${#numbers.formatDecimal(restaurant.rating, 1, 1)}">4.5</span>
+                            <span class="text-muted">
+                                (<span th:text="${restaurant.reviews != null ? restaurant.reviews.size() : 0}">10</span> değerlendirme)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="btn-group">
+                            <a th:href="@{/restaurants/{id}/edit(id=${restaurant.id})}" class="btn btn-outline-primary">
+                                <i class="fas fa-edit me-1"></i>Düzenle
+                            </a>
+                            <a th:href="@{/restaurants/{id}/delete(id=${restaurant.id})}" 
+                               class="btn btn-outline-danger"
+                               onclick="return confirm('Bu restoranı silmek istediğinizden emin misiniz?')">
+                                <i class="fas fa-trash me-1"></i>Sil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Değerlendirme Ekleme Formu -->
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Değerlendirme Ekle</h5>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/reviews}" method="post">
+                    <input type="hidden" name="restaurantId" th:value="${restaurant.id}">
+                    <input type="hidden" name="restaurantName" th:value="${restaurant.name}">
+                    
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Puanınız</label>
+                        <select class="form-select" id="rating" name="rating" required>
+                            <option value="">Seçiniz</option>
+                            <option value="1">1 - Çok Kötü</option>
+                            <option value="2">2 - Kötü</option>
+                            <option value="3">3 - Orta</option>
+                            <option value="4">4 - İyi</option>
+                            <option value="5">5 - Çok İyi</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Yorumunuz</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i>Değerlendirme Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Değerlendirmeler Listesi -->
+        <h4 class="mb-3">Değerlendirmeler</h4>
+        
+        <div class="list-group mb-4" th:if="${not #lists.isEmpty(reviews)}">
+            <div class="list-group-item list-group-item-action" th:each="review : ${reviews}">
+                <div class="d-flex w-100 justify-content-between">
+                    <div class="rating-stars">
+                        <span th:each="i : ${#numbers.sequence(1, 5)}">
+                            <i th:class="${i <= review.rating ? 'fas fa-star' : 'far fa-star'}"></i>
+                        </span>
+                    </div>
+                    <small class="text-muted" th:text="${review.formattedDate}">01.01.2024 12:00</small>
+                </div>
+                <p class="mb-1 mt-2" th:text="${review.comment}">Yorum içeriği burada görünecek.</p>
+                <div class="d-flex justify-content-end mt-2">
+                    <a th:href="@{/reviews/{id}/edit(id=${review.id})}" class="btn btn-sm btn-outline-secondary me-1">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a th:href="@{/reviews/{id}/delete(id=${review.id}, restaurantId=${restaurant.id})}" 
+                       class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('Bu değerlendirmeyi silmek istediğinizden emin misiniz?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Değerlendirme Bulunamadı -->
+        <div class="alert alert-info" th:if="${#lists.isEmpty(reviews)}">
+            <i class="fas fa-info-circle me-2"></i>Bu restoran için henüz değerlendirme yapılmamış. İlk değerlendirmeyi siz yapın!
+        </div>
+        
+        <div class="mt-4">
+            <a href="/restaurants" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Restoranlar Listesine Dön
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

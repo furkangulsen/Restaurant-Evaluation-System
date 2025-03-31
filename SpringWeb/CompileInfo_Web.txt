@@ -1,0 +1,123 @@
+========== RESTORAN DEĞERLENDİRME SİSTEMİ - WEB UYGULAMASI ==========
+
+1. KAYNAK KODLAR
+----------------
+Web uygulamasının kaynak kodları aşağıdaki dizinlerde bulunmaktadır:
+
+Controller (Web Kontrolcüleri) Sınıfları:
+- src/main/java/com/example/demo/controller/HomeController.java (Ana sayfa kontrolcüsü)
+- src/main/java/com/example/demo/controller/RestaurantController.java (Restoran işlemleri kontrolcüsü)
+- src/main/java/com/example/demo/controller/ReviewController.java (Değerlendirme işlemleri kontrolcüsü)
+- src/main/java/com/example/demo/controller/BackupController.java (Yedekleme işlemleri kontrolcüsü)
+
+API Controller Sınıfları:
+- src/main/java/com/example/demo/controller/api/RestaurantApiController.java (Restoran API kontrolcüsü)
+- src/main/java/com/example/demo/controller/api/ReviewApiController.java (Değerlendirme API kontrolcüsü)
+
+Thymeleaf Şablonları:
+- src/main/resources/templates/layout/main.html (Ana şablon)
+- src/main/resources/templates/index.html (Ana sayfa)
+- src/main/resources/templates/restaurants/list.html (Restoran listesi)
+- src/main/resources/templates/restaurants/form.html (Restoran ekleme/düzenleme formu)
+- src/main/resources/templates/restaurants/details.html (Restoran detayları)
+- src/main/resources/templates/reviews/list.html (Değerlendirme listesi)
+- src/main/resources/templates/reviews/form.html (Değerlendirme ekleme/düzenleme formu)
+- src/main/resources/templates/reviews/details.html (Değerlendirme detayları)
+- src/main/resources/templates/backup/index.html (Yedekleme sayfası)
+
+Yapılandırma Dosyaları:
+- src/main/resources/application.properties (Genel yapılandırma)
+- src/main/resources/application-web.properties (Web profili yapılandırması)
+- src/main/resources/static/* (Statik içerikler: CSS, JS, resimler)
+
+2. DERLEME TALİMATLARI
+----------------------
+Uygulamayı derlemek için:
+
+Windows:
+```
+gradlew clean build
+```
+
+Linux/MacOS:
+```
+./gradlew clean build
+```
+
+3. ÇALIŞTIRMA TALİMATLARI
+-------------------------
+Web uygulamasını çalıştırmak için:
+
+Windows:
+```
+gradlew runWeb
+```
+veya
+```
+java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
+```
+
+Linux/MacOS:
+```
+./gradlew runWeb
+```
+veya
+```
+java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
+```
+
+4. WEB ARAYÜZÜ KULLANIMI
+------------------------
+Uygulama başladığında, tarayıcınızda aşağıdaki adresi açarak erişebilirsiniz:
+http://localhost:8080
+
+Ana menüden aşağıdaki işlemleri yapabilirsiniz:
+- Restoranlar: Restoran ekleme, düzenleme, silme ve listeleme
+- Değerlendirmeler: Değerlendirme ekleme, düzenleme, silme ve listeleme
+- Yedekle/Geri Yükle: Veritabanı yedekleme, geri yükleme işlemleri ve örnek veri yükleme
+
+5. REST API KULLANIMI
+---------------------
+Uygulama aynı zamanda REST API sağlamaktadır:
+
+Restoran API:
+- GET /api/restaurants - Tüm restoranları listele
+- GET /api/restaurants/{id} - ID'ye göre restoran getir
+- GET /api/restaurants/search/name/{name} - İsme göre restoran ara
+- GET /api/restaurants/search/rating/{rating} - Puana göre restoranları filtrele
+- GET /api/restaurants/search/location/{location} - Konuma göre restoranları filtrele
+
+Değerlendirme API:
+- GET /api/reviews - Tüm değerlendirmeleri listele
+- GET /api/reviews/{id} - ID'ye göre değerlendirme getir
+- GET /api/reviews/restaurant/{restaurantId} - Restoran ID'sine göre değerlendirmeleri listele
+
+6. ÖRNEK VERİ YÜKLEME
+---------------------
+Web arayüzü üzerinden örnek veri yüklemek için:
+1. http://localhost:8080/backup adresine gidin
+2. "Örnek Veri Seti Yükle" butonuna tıklayın
+3. Onay iletişim kutusunu onaylayın
+
+7. THYMELEAF ŞABLONLARI
+-----------------------
+Web uygulaması, Thymeleaf şablon motoru kullanılarak geliştirilmiştir. Şablonlar:
+- Layout: Ana sayfa yapısını tanımlar (header, footer, menü)
+- List: Veri listeleri için kullanılır (tablo görünümü)
+- Form: Veri ekleme/düzenleme formları
+- Details: Detay görünümleri
+
+8. BOOTSTRAP VE RESPONSIVE TASARIM
+----------------------------------
+Web arayüzü Bootstrap 5 kullanılarak responsive olarak tasarlanmıştır:
+- Mobil uyumlu tasarım
+- Dinamik tablolar ve formlar
+- Modal diyaloglar
+- Uyarı mesajları
+
+9. GEREKSİNİMLER
+----------------
+- Java 17 veya üzeri
+- Gradle 7.6 veya üzeri
+- PostgreSQL veritabanı (varsayılan olarak localhost:5432'de restaurant_db adlı veritabanı)
+- Modern bir web tarayıcısı (Chrome, Firefox, Edge, Safari) 
