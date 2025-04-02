@@ -18,7 +18,7 @@ This project is a comprehensive full-stack application developed using Java JDK 
 1. Install and run PostgreSQL
 2. Run the create_database.sql file to create the database
 
-### GUI Application (gui_testleri)
+### GUI Application (gui_tests)
 1. Open the project in your IDE
 2. Make sure the JAR files are in the root directory of the project
    - These files should come with the project. You can download missing files with Maven: mvn dependency:resolve
